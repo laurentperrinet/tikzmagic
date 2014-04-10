@@ -68,7 +68,7 @@ class TikzMagic(Magics):
     
     def format_latex(self, content, packages):
         latex_template = r'''\documentclass{standalone}
-            \usepackage{tikz,amsmath,amssymb,amsfonts,xcolor}
+            \usepackage{tikz,amsmath,amssymb,amsfonts,xcolor,fixltx2e}
             %(preamble)s
             \begin{document}
             %(content)s
