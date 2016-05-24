@@ -63,8 +63,8 @@ def latex2image(latex, density):
 
 # functions to run command line scripts
 def sh_latex(in_file, out_dir):
-    '''Compile LaTeX to generate a PDF.'''
-    subprocess.call(['pdflatex', '-output-directory', out_dir, in_file])
+    '''Compile XeLaTeX to generate a PDF.'''
+    subprocess.call(['xelatex', '-output-directory', out_dir, in_file])
 
 def sh_convert(in_file, out_file, density=96):
     '''Use ImageMagick to convert PDF to PNG.'''
