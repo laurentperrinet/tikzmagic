@@ -15,6 +15,7 @@ LATEX_TEMPLATE = r'''
     \documentclass[tikz,border={border}]{{standalone}}
     \usepackage{{tikz,{latex_pkgs}}}
     \usetikzlibrary{{{tikz_libs}}}
+    {latex_pre}
     \begin{{document}}
     \begin{{tikzpicture}}
     {content}
@@ -27,6 +28,7 @@ def tikz(line, cell):
     parser = ArgumentParser()
     parser.add_argument('commands', nargs='?', default='')
     parser.add_argument('-p', '--latex_packages', default='')
+    parser.add_argument('-x', '--latex_preamble', default='')
     parser.add_argument('-l', '--tikz_libraries', default='')
     parser.add_argument('-s', '--scale', default=1, type=float)
     parser.add_argument('-b', '--border', default=4)
@@ -34,7 +36,8 @@ def tikz(line, cell):
 
     # prepare latex from template
     latex = LATEX_TEMPLATE.format(content=args.commands + cell, border=args.border,
-                                  latex_pkgs=args.latex_packages, tikz_libs=args.tikz_libraries)
+                                  latex_pkgs=args.latex_packages, latex_pre=args.latex_preamble,
+                                  tikz_libs=args.tikz_libraries)
 
     # compile and convert, returning Image data
     return latex2image(latex, density=int(args.scale*300))
