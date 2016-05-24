@@ -12,6 +12,10 @@ A Jupyter extension for compiling and displaying images described by the [TikZ](
 
 ```pip install git+git://github.com/robjstan/tikzmagic.git```
 
+## Usage
+
+In an iPython notebook cell: `import tikzmagic` or `%load_ext tikzmagic`.
+
 ## Optional arguments
 
 - `-p` or `--latex_packages`
