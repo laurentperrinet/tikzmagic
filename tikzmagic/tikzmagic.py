@@ -26,7 +26,6 @@ LATEX_TEMPLATE = r'''
 def tikz(line, cell):
     '''Format TikZ commands into a LaTeX document, compile, and convert.'''
     parser = ArgumentParser()
-    parser.add_argument('commands', nargs='?', default='')
     parser.add_argument('-p', '--latex_packages', default='')
     parser.add_argument('-x', '--latex_preamble', default='')
     parser.add_argument('-l', '--tikz_libraries', default='')
@@ -35,9 +34,8 @@ def tikz(line, cell):
     args = parser.parse_args(shlex.split(line))
 
     # prepare latex from template
-    latex = LATEX_TEMPLATE.format(content=args.commands + cell, border=args.border,
-                                  latex_pkgs=args.latex_packages, latex_pre=args.latex_preamble,
-                                  tikz_libs=args.tikz_libraries)
+    latex = LATEX_TEMPLATE.format(content=cell, border=args.border, latex_pre=args.latex_preamble,
+                                  latex_pkgs=args.latex_packages, tikz_libs=args.tikz_libraries)
 
     # compile and convert, returning Image data
     return latex2image(latex, density=int(args.scale*300))
